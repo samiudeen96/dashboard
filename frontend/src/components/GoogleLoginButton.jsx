@@ -10,7 +10,7 @@ const GoogleLoginButton = () => {
     <div className="flex justify-center mt-4">
       <button
         onClick={handleGoogleLogin}
-        className="shadow gap-2 flex py-2 px-3 rounded-sm items-center text-black text-sm"
+        className="shadow gap-2 flex py-[10px] px-4 rounded-sm items-center text-black text-sm"
       >
         <div>
           <img
