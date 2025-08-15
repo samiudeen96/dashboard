@@ -20,7 +20,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   console.log("user", user);
-  
+
 
   const filteredMenu = headerDropdown[user?.role] || [];
 
@@ -73,8 +73,13 @@ const Header = () => {
         className='flex items-center gap-2 border border-[#eae7f9] rounded p-1 cursor-pointer relative'
       >
         <div className='bg-background w-8 h-8 flex items-center justify-center rounded'>
-          {user?.picture ? <img src={user?.profile} className='h-full w-full' alt="" /> : <FaUser />}
+          {user?.picture ? (
+            <img src={user.picture} className='h-full w-full rounded' alt="Profile" />
+          ) : (
+            <FaUser />
+          )}
         </div>
+
         <div>
           <p className='text-xs font-semibold mb-[-1px]'>{user?.firstName}</p>
           <p className='text-xs'>{user?.role}</p>
