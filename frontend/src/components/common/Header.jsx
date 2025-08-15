@@ -18,12 +18,14 @@ const Header = () => {
   const dropdownRef = useRef(null);
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
+
+  console.log("user", user);
   
 
   const filteredMenu = headerDropdown[user?.role] || [];
 
   // const openModal = useUiStore((state) => state.openModal);
-   const { openModal, openSidebar } = useUiStore();
+  const { openModal, openSidebar } = useUiStore();
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -71,7 +73,7 @@ const Header = () => {
         className='flex items-center gap-2 border border-[#eae7f9] rounded p-1 cursor-pointer relative'
       >
         <div className='bg-background w-8 h-8 flex items-center justify-center rounded'>
-          <FaUser />
+          {user?.picture ? <img src={user?.profile} className='object-contain' alt="" /> : <FaUser />}
         </div>
         <div>
           <p className='text-xs font-semibold mb-[-1px]'>{user?.firstName}</p>

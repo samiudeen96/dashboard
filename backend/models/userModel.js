@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema(
     email:     { type: String, required: true, unique: true },
     password:  { type: String, default: "" },
     googleId:  { type: String, default: "" },
+    picture:   { type: String, default: "" },
     role: {
       type: String,
       enum: ["admin", "manager", "sales", "client"],
@@ -40,7 +41,7 @@ const userSchema = new mongoose.Schema(
   { minimize: false, timestamps: true }
 );
 
-userSchema.index({ email: 1 }, { unique: true });
+// userSchema.index({ email: 1 }, { unique: true });
 
 const userModel = mongoose.models.user || mongoose.model("user", userSchema);
 export default userModel;

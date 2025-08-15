@@ -25,7 +25,14 @@ export const register = async (req, res) => {
     generateToken(res, user);
     res.status(201).json({
       success: true,
-      user: { id: user._id, firstName, lastName, email, role },
+      user: {
+        id: user._id,
+        firstName,
+        lastName,
+        email,
+        role,
+        picture: user.picture
+      },
     });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
@@ -51,7 +58,7 @@ export const login = async (req, res) => {
     generateToken(res, user);
     res.status(200).json({
       success: true,
-      user: { id: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email, role: user.role },
+      user: { id: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email, picture: user.picture, role: user.role },
     });
   } catch (err) {
     res.status(500).json({ success: false, message: "Server error" });

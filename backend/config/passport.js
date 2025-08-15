@@ -5,7 +5,11 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import userModel from "../models/userModel.js";
 
 try {
-  if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET && process.env.GOOGLE_CALLBACK_URL) {
+  if (
+    process.env.GOOGLE_CLIENT_ID &&
+    process.env.GOOGLE_CLIENT_SECRET &&
+    process.env.GOOGLE_CALLBACK_URL
+  ) {
     passport.use(
       new GoogleStrategy(
         {
@@ -21,9 +25,12 @@ try {
             let user = await userModel.findOne({ email });
             if (!user) {
               user = await userModel.create({
+                googleId: profile.id,
+                email: profile.emails[0].value,
                 firstName: profile.name?.givenName || "",
                 lastName: profile.name?.familyName || "",
-                email,
+                // ⬇ Save Google profile picture
+                picture: profile.photos?.[0].value || "",
                 password: "",
                 role: "client",
               });
