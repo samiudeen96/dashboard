@@ -14,9 +14,9 @@ const AuthProvider = ({ children }) => {
     }
   }, [data?.user, setUser]);
 
-  if (isLoading || isFetching) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading || isFetching) {
+  //   return <div>Loading...</div>;
+  // }
 
   return children;
 };
